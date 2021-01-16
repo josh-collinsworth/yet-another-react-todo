@@ -57,25 +57,25 @@ input[type=checkbox] {
   position: absolute;
   left: -100vw;
   opacity: 0;
-}
+  
+  & + label {
+    flex: 1 1 auto;
 
-input[type=checkbox] + label {
-  flex: 1 1 auto;
-}
+    &:before {
+      content: '⬜️';
+      display: inline-block;
+      margin-right: 0.5em;
+    }
+  }
 
-input[type=checkbox] + label:before {
-  content: '⬜️';
-  display: inline-block;
-  margin-right: 0.5em;
-}
-
-input[type=checkbox]:checked + label {
-  text-decoration: line-through;
-  color: var(--lightGray);
-}
-
-input[type=checkbox]:checked + label:before {
-  content: '✅';
+  &:checked + label {
+    text-decoration: line-through;
+    color: var(--lightGray);
+    
+    &:before {
+      content: '✅';
+    }
+  }
 }
 
 .new-item {

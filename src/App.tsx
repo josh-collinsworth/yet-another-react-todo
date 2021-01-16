@@ -1,9 +1,7 @@
-import './App.css'
+import './App.scss'
 import { useState, useEffect } from 'react'
 import ChecklistItem from './components/ChecklistItem'
 import { Item } from './utils/ItemInterface'
-
-
 
 function App() {
   const [newListItem, setNewListItem] = useState<string>('')
@@ -77,13 +75,16 @@ function App() {
 
 
         <form>
-          <h2>{checkedItems} of {list.length} completed</h2>
-          { list.length && 
+          <h2>{list.length} total items | {checkedItems} completed</h2>
+          { list.length 
+            ? 
             <ul id="task-list">
               { list.map(listItem => (
                 <ChecklistItem item={listItem} removeItem={removeItem} toggleChecked={toggleChecked} key={listItem.id}/>
                 ))}
-            </ul>
+            </ul> 
+            :
+            <p>Add tasks above.</p>
           }
 
           <button onClick={checkOrUncheckAll}>
