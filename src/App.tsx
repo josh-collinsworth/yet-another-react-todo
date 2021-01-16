@@ -30,6 +30,19 @@ function App() {
     }))
   }
 
+  const checkedItems = list.filter(item => item.checked).length
+  const allAreChecked = checkedItems === list.length
+
+  const checkOrUncheckAll = (e: React.FormEvent<HTMLButtonElement>): void => {
+    e.preventDefault()
+
+    setList(list.filter(item => {
+      // TODO: this works well, but it's not very readable. (It sets all to checked if there are unchecked, and otherwise unchecks all.)
+      item.checked = !allAreChecked
+      return item
+    }))
+  }
+
   //First render only
   useEffect(() => {
     const storedItems: Item[] = JSON.parse(localStorage.getItem('yartda-list') || '')
@@ -42,6 +55,7 @@ function App() {
   useEffect(() => {
     localStorage.setItem('yartda-list', JSON.stringify(list))
   }, [list])
+
 
   return (
     <div className="App">
@@ -61,19 +75,20 @@ function App() {
           </div>
         </form>
 
+
         <form>
+          <h2>{checkedItems} of {list.length} completed</h2>
           { list.length && 
             <ul id="task-list">
               { list.map(listItem => (
-                // <li key={item.id}>
-                //   <input type="checkbox" id={String(item.id)} value={String(item.checked)} onChange={() => item.checked = !item.checked}/>
-                //   <label htmlFor={String(item.id)}>{item.title}</label>
-                //   <button className="icon" onClick={() => removeItem(item.id)}>❌</button>
-                // </li>
-                <ChecklistItem item={listItem} removeItem={removeItem} toggleChecked={toggleChecked}/>
+                <ChecklistItem item={listItem} removeItem={removeItem} toggleChecked={toggleChecked} key={listItem.id}/>
                 ))}
             </ul>
           }
+
+          <button onClick={checkOrUncheckAll}>
+            {allAreChecked ? 'Uncheck' : 'Check'} all
+          </button>
         </form>
       </div>
     </div>
