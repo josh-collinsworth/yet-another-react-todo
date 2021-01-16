@@ -1,38 +1,99 @@
-.App {
-  text-align: center;
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;800&display=swap");
+
+:root {
+  font-size: 22px;
+  --black: #101820;
+  --darkGray: #53565a;
+  --mediumGray: #888b8d;
+  --lightGray: #a7a8aa;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: var(--black);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+*,
+*:before,
+*:after {
+  font-family: inherit;
+  box-sizing: border-box;
+  color: inherit;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.container {
+  width: 100%;
+  max-width: 32rem;
+  padding: 4rem 1rem;
+  margin: auto;
+}
+
+input {
+  border: none;
+  border-bottom: 2px solid;
+  padding: .5em 0;
+  font-size: 1rem;
+  flex: 1 1 auto;
+  margin-right: 1rem;
+}
+
+button,
+input[type=submit] {
+  border: 2px solid;
+  padding: .5em;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button.icon {
+  background: none;
+  border: none;
+  font-size: 1em;
+}
+
+input[type=checkbox] {
+  position: absolute;
+  left: -100vw;
+  opacity: 0;
+}
+
+input[type=checkbox] + label {
+  flex: 1 1 auto;
+}
+
+input[type=checkbox] + label:before {
+  content: '⬜️';
+  display: inline-block;
+  margin-right: 0.5em;
+}
+
+input[type=checkbox]:checked + label {
+  text-decoration: line-through;
+  color: var(--lightGray);
+}
+
+input[type=checkbox]:checked + label:before {
+  content: '✅';
+}
+
+.new-item {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+}
+
+#task-list {
+  padding: 0;
+  list-style-type: none;
+  border-top: 1px solid var(--lightGray);
+  margin-top: 3rem;
+}
+
+#task-list li {
+  padding: .5rem 0;
+  border-bottom: 1px solid var(--lightGray);
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  justify-content: space-between;
 }
