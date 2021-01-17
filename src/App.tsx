@@ -58,8 +58,10 @@ function App() {
 
   //First render only
   useEffect(() => {
-    const storedItems: Item[] = JSON.parse(localStorage.getItem('yartda-list') || '')
-    if (storedItems.length) {
+    const storedData: string|null = localStorage.getItem('yartda-list')
+
+    if (storedData) {
+      const storedItems: Item[] = JSON.parse(storedData)
       setList(storedItems)
     }
   }, [])
