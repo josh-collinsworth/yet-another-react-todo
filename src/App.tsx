@@ -1,6 +1,7 @@
 import './App.scss'
 import { useState, useEffect } from 'react'
 import ChecklistItem from './components/ChecklistItem'
+import ButtonBar from './components/ButtonBar'
 import { Item } from './utils/ItemInterface'
 
 function App() {
@@ -26,6 +27,20 @@ function App() {
       }
       return item
     }))
+  }
+
+  const deleteChecked = (e: React.FormEvent<HTMLButtonElement>): void => {
+    e.preventDefault()
+    setList(list.filter(item => !item.checked))
+  }
+
+  const deleteAll = (e: React.FormEvent<HTMLButtonElement>): void => {
+    e.preventDefault()
+    const confirmation: boolean = confirm(`Are you sure you want to delete all items? This cannot be undone.`) /* eslint-disable-line */
+
+    if (confirmation) {
+      setList([])
+    }
   }
 
   const checkedItems = list.filter(item => item.checked).length
@@ -60,6 +75,7 @@ function App() {
       <div className="container">
         <h1>Yet Another React To-Do App (Now with TypeScript!)</h1>
 
+        {/* TODO: further componentize this. Maybe use some state handling? */}
         <form onSubmit={handleNewItem}>
           <div className="new-item">
 
@@ -72,7 +88,6 @@ function App() {
             <button>Add</button>  
           </div>
         </form>
-
 
         <form>
           <h2>{list.length} total items | {checkedItems} completed</h2>
@@ -87,9 +102,12 @@ function App() {
             <p>Add tasks above.</p>
           }
 
-          <button onClick={checkOrUncheckAll}>
-            {allAreChecked ? 'Uncheck' : 'Check'} all
-          </button>
+          <ButtonBar 
+            checkOrUncheckAll={checkOrUncheckAll}
+            allAreChecked={allAreChecked}
+            deleteAll={deleteAll}
+            deleteChecked={deleteChecked}
+          />
         </form>
       </div>
     </div>

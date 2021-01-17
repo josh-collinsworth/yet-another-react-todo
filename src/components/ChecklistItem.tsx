@@ -2,7 +2,7 @@ import { Item } from '../utils/ItemInterface'
 import Styled from 'styled-components'
 
 const ListItem = Styled.li`
-padding: .5rem 0;
+padding: .25rem 0;
 border-bottom: 1px solid var(--lightGray);
 display: flex;
 align-items: center;

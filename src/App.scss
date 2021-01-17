@@ -1,8 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;800&display=swap");
 
+// TODO: extract the non-global styles to styled components and/or other, more focused stylesheets
+
 :root {
   font-size: 22px;
-  --black: #101820;
+  --black: #183136;
   --darkGray: #53565a;
   --mediumGray: #888b8d;
   --lightGray: #a7a8aa;
@@ -85,12 +87,12 @@ input[type=checkbox] {
 }
 
 h2 {
-  font-size: 1rem;
+  font-size: .7rem;
   margin-top: 3rem;
 }
 
 #task-list {
   padding: 0;
   list-style-type: none;
-  margin-top: 1rem;
+  margin-top: .5rem;
 }
