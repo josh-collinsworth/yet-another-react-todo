@@ -7,22 +7,18 @@ const ButtonBarContainer = Styled.div`
 `
 
 const ButtonBar = (props: { 
-  allAreChecked: boolean, 
-  checkOrUncheckAll: (e: React.FormEvent<HTMLButtonElement>) => void, 
   deleteAll: (e: React.FormEvent<HTMLButtonElement>) => void,
   deleteChecked: (e: React.FormEvent<HTMLButtonElement>) => void
 }) => {
+  
   return (
     <ButtonBarContainer>
-        <button onClick={props.checkOrUncheckAll}>
-          {props.allAreChecked ? 'Uncheck' : 'Check'} all
-        </button>
-
         <button onClick={props.deleteChecked}>
-          Delete Checked
+          <span aria-hidden="true">✖️&ensp;</span> Delete Checked
         </button>
 
         <button onClick={props.deleteAll}>
+          <span aria-hidden="true">⚠️&ensp;</span>
           Delete all
         </button>
     </ButtonBarContainer>

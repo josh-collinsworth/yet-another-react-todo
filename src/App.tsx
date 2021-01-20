@@ -2,6 +2,8 @@ import './App.scss'
 import { useState, useEffect } from 'react'
 import ChecklistItem from './components/ChecklistItem'
 import ButtonBar from './components/ButtonBar'
+import AddItemForm from './components/AddItemForm'
+import CheckUncheckButton from './components/CheckUncheckButton'
 import { Item } from './utils/ItemInterface'
 
 function App() {
@@ -21,6 +23,8 @@ function App() {
   }
 
   const toggleChecked = (id: number) => {
+    console.log('got here')
+    console.log(id)
     setList(list.filter(item => {
       if (id === item.id) {
         item.checked = !item.checked
@@ -43,8 +47,8 @@ function App() {
     }
   }
 
-  const checkedItems = list.filter(item => item.checked).length
-  const allAreChecked = checkedItems === list.length
+  const checkedItems = list.filter(item => item.checked)
+  const allAreChecked = checkedItems.length === list.length
 
   const checkOrUncheckAll = (e: React.FormEvent<HTMLButtonElement>): void => {
     e.preventDefault()
@@ -77,39 +81,26 @@ function App() {
       <div className="container">
         <h1>Yet Another React To-Do App (Now with TypeScript!)</h1>
 
-        {/* TODO: further componentize this. Maybe use some state handling? */}
-        <form onSubmit={handleNewItem}>
-          <div className="new-item">
-
-            <input 
-              type="text"
-              placeholder="Add a new item"
-              value={newListItem}
-              onChange={(e) => setNewListItem(e.target.value)}
-              />
-            <button>Add</button>  
-          </div>
-        </form>
+        <AddItemForm newListItem={newListItem} setNewListItem={setNewListItem} handleNewItem={handleNewItem} />
 
         <form>
-          <h2>{list.length} total items | {checkedItems} completed</h2>
+          <h2>{list.length} total items | {checkedItems.length} completed</h2>
+          
           { list.length 
             ? 
-            <ul id="task-list">
-              { list.map(listItem => (
-                <ChecklistItem item={listItem} removeItem={removeItem} toggleChecked={toggleChecked} key={listItem.id}/>
+            <>
+              <CheckUncheckButton allAreChecked={allAreChecked} checkOrUncheckAll={checkOrUncheckAll} />
+              <ul id="task-list">
+                { list.reverse().map(listItem => (
+                  <ChecklistItem item={listItem} removeItem={removeItem} toggleChecked={toggleChecked} key={listItem.id} />
                 ))}
-            </ul> 
+              </ul>
+            </>
             :
             <p>Add tasks above.</p>
           }
 
-          <ButtonBar 
-            checkOrUncheckAll={checkOrUncheckAll}
-            allAreChecked={allAreChecked}
-            deleteAll={deleteAll}
-            deleteChecked={deleteChecked}
-          />
+          <ButtonBar deleteAll={deleteAll} deleteChecked={deleteChecked}/>
         </form>
       </div>
     </div>
