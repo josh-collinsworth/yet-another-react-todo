@@ -3,7 +3,7 @@ import Styled from 'styled-components'
 const ButtonBarContainer = Styled.div`
   display: flex;
   justify-content: space-between;
-  margin-top: 3rem;
+  margin-top: 4rem;
 `
 
 const ButtonBar = (props: { 

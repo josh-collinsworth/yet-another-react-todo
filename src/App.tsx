@@ -83,25 +83,23 @@ function App() {
 
         <AddItemForm newListItem={newListItem} setNewListItem={setNewListItem} handleNewItem={handleNewItem} />
 
-        <form>
-          <h2>{list.length} total items | {checkedItems.length} completed</h2>
-          
-          { list.length 
-            ? 
-            <>
+        { list.length ?
+          <form className="list-form">
+            
+            <div className="list-form__heading-container">
+              <h2 className="list-form__heading">{list.length} total items | {checkedItems.length} completed</h2>
               <CheckUncheckButton allAreChecked={allAreChecked} checkOrUncheckAll={checkOrUncheckAll} />
-              <ul id="task-list">
-                { list.reverse().map(listItem => (
-                  <ChecklistItem item={listItem} removeItem={removeItem} toggleChecked={toggleChecked} key={listItem.id} />
-                ))}
-              </ul>
-            </>
-            :
-            <p>Add tasks above.</p>
-          }
+            </div>
+        
+            <ul className="list-form__tasks">
+              { list.map(listItem => (
+                <ChecklistItem item={listItem} removeItem={removeItem} toggleChecked={toggleChecked} key={listItem.id} />
+              )).reverse()}
+            </ul>
 
-          <ButtonBar deleteAll={deleteAll} deleteChecked={deleteChecked}/>
-        </form>
+            <ButtonBar deleteAll={deleteAll} deleteChecked={deleteChecked}/>
+          </form>
+        : null}
       </div>
     </div>
   );

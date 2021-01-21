@@ -4,6 +4,7 @@ const CheckBtn = Styled.button`
   border: none;
   background: transparent;
   padding: 0;
+  font-size: 1rem;
 `
 
 const CheckUncheckButton = (props: {
