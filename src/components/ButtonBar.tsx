@@ -13,11 +13,12 @@ const ButtonBar = (props: {
   
   return (
     <ButtonBarContainer>
-        <button onClick={props.deleteChecked}>
-          <span aria-hidden="true">✖️&ensp;</span> Delete Checked
+        <button onClick={props.deleteChecked} className="text">
+          <span aria-hidden="true">✖️&ensp;</span>
+          Delete Checked
         </button>
 
-        <button onClick={props.deleteAll}>
+        <button onClick={props.deleteAll} className="text">
           <span aria-hidden="true">⚠️&ensp;</span>
           Delete all
         </button>

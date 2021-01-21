@@ -38,7 +38,7 @@ const AddItemForm = (props: {
         onChange={(e) => props.setNewListItem(e.target.value)}
         id="new-item-input"
         />
-      <button>
+      <button className="text">
         <span aria-hidden="true">➕&ensp;</span>
         Add
       </button>  

@@ -83,7 +83,7 @@ function App() {
 
         <AddItemForm newListItem={newListItem} setNewListItem={setNewListItem} handleNewItem={handleNewItem} />
 
-        { list.length ?
+        { list.length > 0 &&
           <form className="list-form">
             
             <div className="list-form__heading-container">
@@ -94,12 +94,12 @@ function App() {
             <ul className="list-form__tasks">
               { list.map(listItem => (
                 <ChecklistItem item={listItem} removeItem={removeItem} toggleChecked={toggleChecked} key={listItem.id} />
-              )).reverse()}
+              )).reverse()} {/* This makes the newest item appear at the top */}
             </ul>
 
             <ButtonBar deleteAll={deleteAll} deleteChecked={deleteChecked}/>
           </form>
-        : null}
+        }
       </div>
     </div>
   );
