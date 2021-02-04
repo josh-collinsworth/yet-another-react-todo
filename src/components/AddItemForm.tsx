@@ -6,9 +6,9 @@ justify-content: space-between;
 margin: 3rem 0;
 position: relative;
 background: #fff;
-` 
+`
 
-const NewItemInput = Styled.label`
+const NewItemInputLabel = Styled.label`
 position: absolute;
 left: 0;
 transform: translateY(0);
@@ -26,22 +26,23 @@ const AddItemForm = (props: {
 }) => {
 
   return (
-    <NewItemForm onSubmit={props.handleNewItem}>
-      <NewItemInput htmlFor="new-item-input" className={props.newListItem ? 'raised' : ''}>
+    <NewItemForm onSubmit={props.handleNewItem} data-testid="addItemForm">
+      <NewItemInputLabel htmlFor="new-item-input" className={props.newListItem ? 'raised' : ''}>
         Add new item
-      </NewItemInput>
+      </NewItemInputLabel>
 
-      <input 
+      <input
         type="text"
         placeholder="Add a new item"
         value={props.newListItem}
         onChange={(e) => props.setNewListItem(e.target.value)}
         id="new-item-input"
-        />
-      <button className="text">
+        data-testid="addItemFormInput"
+      />
+      <button className="text" data-testid="addItemFormSubmitBtn">
         <span aria-hidden="true">➕&ensp;</span>
         Add
-      </button>  
+      </button>
     </NewItemForm>
   )
 }

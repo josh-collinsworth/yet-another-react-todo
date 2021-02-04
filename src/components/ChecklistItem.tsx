@@ -1,4 +1,4 @@
-import { Item } from '../utils/ItemInterface'
+import { Item } from '../interfaces/ItemInterface'
 import Styled from 'styled-components'
 
 const ListItem = Styled.li`
@@ -16,7 +16,10 @@ const ChecklistItem = (props: { item: Item, removeItem: (id: number) => any, tog
     <ListItem key={id}>
       <input type="checkbox" id={String(id)} checked={checked} onChange={() => props.toggleChecked(id)}/>
       <label htmlFor={String(id)}>{title}</label>
-      <button className="icon" onClick={() => props.removeItem(id)}>❌</button>
+      <button className="icon" onClick={() => props.removeItem(id)}>
+        <span className="sr">Delete item</span>
+        <span aria-hidden="true">🗑️</span>
+      </button>
     </ListItem>
   )
 }
